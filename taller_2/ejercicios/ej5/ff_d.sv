@@ -4,7 +4,7 @@ module ff_d (
     input  logic d,
     output logic q
 );
-always_ff @(posedge clk) begin
+always_ff @(posedge clk) begin // si rst = 1 → q <= 0; si no, q <= d
         if (rst) begin
             q <= 1'b0;
         end else begin 
