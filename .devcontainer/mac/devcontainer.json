@@ -1,16 +1,16 @@
 {
   "name": "sd-dev",
-  "image": "docker.io/twint/sd:latest",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "options": ["--platform=linux/amd64"]
+  },
   "remoteUser": "ubuntu",
   "updateRemoteUserUID": true,
-  "initializeCommand": "xhost +local:root",
+  "initializeCommand": "bash -lc 'if command -v xhost >/dev/null 2>&1; then xhost +local:root || true; fi'",
   "features": {},
   "runArgs": [
     "--platform=linux/amd64",
-    "--net=host",
-    "--ipc=host",
-    "--env=DISPLAY=${localEnv:DISPLAY}",
-    "--volume=/tmp/.X11-unix:/tmp/.X11-unix"
+    "--env=DISPLAY=${localEnv:DISPLAY}"
   ],
   "containerEnv": {
     "WINIT_UNIX_BACKEND": "x11",
