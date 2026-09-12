@@ -3,5 +3,18 @@ module top_module (
     output logic [3:0] sum,
     output logic overflow
 );
-  // COMPLETAR: conectar el sumador provisto (cin=0) con overflow_4b.
+  logic cout;
+  sumador_4b sumador (
+        .a(a),
+        .b(b),
+        .cin(1'b0),
+        .sum(sum),
+        .cout(cout)
+    );
+    overflow_4b detector (
+        .a(a),
+        .b(b),
+        .sum(sum),
+        .overflow(overflow)
+    );
 endmodule
