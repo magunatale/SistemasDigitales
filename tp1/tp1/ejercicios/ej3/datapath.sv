@@ -20,7 +20,11 @@ module datapath (
         .regB_idx(rs2), .regB_din(32'b0),
         .regB_dout(rf_rs2_data), .regB_we(1'b0)
     );
-    // COMPLETAR: conectar operandos, resultado, flags e índice A.
-    // El cast del opcode está provisto.
+
+    assign alu_io.operand_a = rf_rs1_data;
+    assign alu_io.operand_b = rf_rs2_data;
+    assign result =alu_io.result ;
+    assign  flags= alu_io.flags;
+    assign regA_idx = rf_we ? rd : rs1;
     assign alu_io.opcode = alu_op_e'(opcode);
 endmodule
